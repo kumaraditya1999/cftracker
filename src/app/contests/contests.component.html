@@ -1,0 +1,11 @@
+<h1>Contests</h1>
+<table>
+    <tr>
+        <th>Contest Id</th>
+        <th>Contest Name</th>
+        <th>Contest Phase</th>
+    </tr>
+    <ng-container *ngFor="let contest of contests">
+        <app-contest [contest]="contest"></app-contest>
+    </ng-container>
+</table>

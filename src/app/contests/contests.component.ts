@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { CfResponse } from '../models/cfresponse';
 import { Contest } from '../models/contest';
+import { Problem } from '../models/problem';
+import { ProblemSet } from '../models/problemset';
+import { CfService } from '../services/cf.service';
 
 @Component({
   selector: 'app-contests',
@@ -8,31 +12,30 @@ import { Contest } from '../models/contest';
 })
 export class ContestsComponent implements OnInit {
 
-  constructor() { }
+  constructor(private cfService: CfService) {
+    this.PopulateProblems();
+    this.PopulateContests();
+  }
 
-  contests: Contest[] = [
-    {
-      "id": 1728,
-      "name": "Educational Codeforces Round 135 (Rated for Div. 2)",
-      "type": "ICPC",
-      "phase": "FINISHED"
-    },
-    {
-      "id": 1726,
-      "name": "Codeforces Round #819 (Div. 1 + Div. 2) and Grimoire of Code Annual Contest 2022",
-      "type": "CF",
-      "phase": "FINISHED",
-
-    },
-    {
-      "id": 1729,
-      "name": "Codeforces Round #820 (Div. 3)",
-      "type": "ICPC",
-      "phase": "FINISHED",
-    }
-  ];
+  contests: Contest[] = [];
+  problems: Problem[] = [];
 
   ngOnInit(): void {
+  }
+
+  private PopulateProblems() {
+    this.cfService.GetAllProblems()
+    .subscribe((data: CfResponse<ProblemSet>) => {
+      this.problems = data.result.problems;
+    });
+  }
+
+  private PopulateContests() {
+    this.cfService.GetAllContests()
+    .subscribe((data: CfResponse<Contest[]>) =>
+      {
+        this.contests = data.result.filter((contest: Contest) => contest.phase == "FINISHED");
+      });
   }
 
 }

@@ -13,8 +13,18 @@ import { CfService } from '../services/cf.service';
 export class ContestsComponent implements OnInit {
 
   constructor(private cfService: CfService) {
-    this.PopulateProblems();
-    this.PopulateContests();
+    this.cfService.GetAllContests()
+    .then((contests) => {
+      this.contests = contests;
+      console.log(this.contests);
+    });
+
+    this.cfService.GetAllProblems()
+    .then((problems) => {
+      this.problems = problems;
+      console.log(this.problems);
+    });
+
   }
 
   contests: Contest[] = [];
@@ -22,20 +32,4 @@ export class ContestsComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
-  private PopulateProblems() {
-    this.cfService.GetAllProblems()
-    .subscribe((data: CfResponse<ProblemSet>) => {
-      this.problems = data.result.problems;
-    });
-  }
-
-  private PopulateContests() {
-    this.cfService.GetAllContests()
-    .subscribe((data: CfResponse<Contest[]>) =>
-      {
-        this.contests = data.result.filter((contest: Contest) => contest.phase == "FINISHED");
-      });
-  }
-
 }

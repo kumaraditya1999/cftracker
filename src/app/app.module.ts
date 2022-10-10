@@ -5,9 +5,10 @@ import { FormsModule } from '@angular/forms';
 import { ContestsComponent } from './contests/contests.component';
 import { ContestComponent } from './contests/contest/contest.component';
 import { HttpClientModule } from '@angular/common/http';
+import { ProblemComponent } from './contests/contest/problem/problem.component';
 
 @NgModule({
-    declarations: [AppComponent, ContestsComponent, ContestComponent],
+    declarations: [AppComponent, ContestsComponent, ContestComponent, ProblemComponent],
     imports: [BrowserModule, FormsModule, HttpClientModule],
     bootstrap: [AppComponent]
 })

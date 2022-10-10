@@ -1,5 +1,5 @@
 export interface Problem {
-    contestId: string;
+    contestId: number;
     index: string;
     name: string;
     rating: string;

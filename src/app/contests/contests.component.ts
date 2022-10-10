@@ -13,18 +13,12 @@ import { CfService } from '../services/cf.service';
 export class ContestsComponent implements OnInit {
 
   constructor(private cfService: CfService) {
-    this.cfService.GetAllContests()
-    .then((contests) => {
-      this.contests = contests;
-      console.log(this.contests);
+    Promise.all([this.cfService.GetAllContests(), this.cfService.GetAllProblems()])
+    .then((values) => {
+      this.contests = values[0];
+      this.problems = values[1];
+      cfService.AddProblemsToContests(this.problems, this.contests);
     });
-
-    this.cfService.GetAllProblems()
-    .then((problems) => {
-      this.problems = problems;
-      console.log(this.problems);
-    });
-
   }
 
   contests: Contest[] = [];

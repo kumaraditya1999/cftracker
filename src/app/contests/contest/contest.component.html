@@ -1,3 +1,7 @@
 <div>
     <a href="{{contest.url}}" target="_blank">{{contest.name}}</a>
+    <p>{{contest.category}}</p>
+    <ng-container *ngFor="let problem of contest.problems">
+        <app-problem [problem]="problem"></app-problem>
+    </ng-container>
 </div>

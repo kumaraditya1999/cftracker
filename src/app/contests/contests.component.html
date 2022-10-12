@@ -1,3 +1,17 @@
+<input [(ngModel)]="handle">
+<button [disabled]="!canFetch" (click)="UpdateHandleData()">fetch</button>
+<nav>
+    <button (click)="category='Div. 1'">Div. 1</button>
+    <button (click)="category='Div. 2'">Div. 2'</button>
+    <button (click)="category='Div. 3'">Div. 3</button>
+    <button (click)="category='Div. 4'">Div. 4</button>
+    <button (click)="category='Div. 1 + Div. 2'">Div. 1 + Div. 2</button>
+    <button (click)="category='Global'">Global</button>
+    <button (click)="category='Educational'">Educational</button>
+    <button (click)="category='All'">All</button>
+    <button (click)="category='Others'">Others</button>
+</nav>
+
 <h1>Contests</h1>
 <table>
     <tr>
@@ -6,6 +20,8 @@
         <th>Contest Phase</th>
     </tr>
     <ng-container *ngFor="let contest of contests">
-        <app-contest [contest]="contest"></app-contest>
+        <ng-container *ngIf="IsSelectedCategory(contest.category)">
+            <app-contest [contest]="contest"></app-contest>
+        </ng-container>
     </ng-container>
 </table>

@@ -6,8 +6,10 @@ export class Constants {
     static readonly DIV_1_DIV_2 = "Div. 1 + Div. 2";
     static readonly GLOBAL = "Global";
     static readonly EDUCATIONAL = "Educational";
+    static readonly ALL = "All";
     static readonly OTHERS = "Others";
     static readonly FINISHED = "FINISHED";
+    static readonly OK = "OK";
 }
 
 export const ContestCategory: string[] = [

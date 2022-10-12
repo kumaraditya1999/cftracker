@@ -28,7 +28,6 @@ export class CfService {
     .map((contest) => {
       contest.url = `${contestBaseUrl}/${contest.id}`;
       contest.category = this.GetCategory(contest.name);
-      console.log(this.GetCategory(contest.name));
       return contest;
     });
 
@@ -61,6 +60,10 @@ export class CfService {
     contests.forEach(contest => contest.problems = problems
       .filter(problem => problem.contestId == contest.id)
       .sort((a, b) => (a.index < b.index) ? -1: 1)
-      .map((problem) => { problem.url = `${contest.url}/problem/${problem.index}`; return problem; }));
+      .map((problem) => { 
+        problem.url = `${contest.url}/problem/${problem.index}`;
+        problem.solved = false;
+        return problem;
+      }));
   }
 }

@@ -10,9 +10,10 @@ import { Constants, ContestCategory } from '../models/constants';
 
 const baseUrl = "https://codeforces.com";
 const allContestsUrl = `${baseUrl}/api/contest.list`;
-const allSubmissionsUrl = `${baseUrl}/api/contest.status`;
+const allSubmissionsUrlWithContest = `${baseUrl}/api/contest.status`;
 const allProblemsUrl = `${baseUrl}/api/problemset.problems`;
 const contestBaseUrl = `${baseUrl}/contest`;
+const allSubmissionsUrl = `${baseUrl}/api/user.status`
 
 @Injectable({
   providedIn: 'root'
@@ -34,8 +35,15 @@ export class CfService {
     return contests;
   }
 
-  async GetAllSubmissions(contestId: string, handle: string) : Promise<Submission[]> {
-    var url: string = `${allSubmissionsUrl}?contestId=${contestId}&handle=${handle}`;
+  async GetAllSubmissionsInAContest(contestId: string, handle: string) : Promise<Submission[]> {
+    var url: string = `${allSubmissionsUrlWithContest}?contestId=${contestId}&handle=${handle}`;
+    var submissionsResult = await firstValueFrom(this.http.get<CfResponse<Submission[]>>(url));
+    var submissions = submissionsResult.result;
+    return submissions;
+  }
+
+  async GetAllSubmissions(handle: string) : Promise<Submission[]> {
+    var url: string = `${allSubmissionsUrl}?handle=${handle}`;
     var submissionsResult = await firstValueFrom(this.http.get<CfResponse<Submission[]>>(url));
     var submissions = submissionsResult.result;
     return submissions;

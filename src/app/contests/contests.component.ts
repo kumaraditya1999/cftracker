@@ -35,13 +35,12 @@ export class ContestsComponent implements OnInit {
   }
 
   UpdateHandleData(): void {
-    this.contests.forEach(contest => {
-      this.cfService.GetAllSubmissions(contest.id.toString(), this.handle)
-      .then((submissions: Submission[]) => {
-        var dict = new Map();
-        contest.problems.forEach(problem => {
-          problem.solved = submissions.some(submission => submission.verdict == Constants.OK);
-        });
+    this.cfService.GetAllSubmissions(this.handle)
+    .then((submissions: Submission[]) => {
+      var groupedSubmission = groupBy(submissions, "contestId");
+      this.problems.forEach(problem => {
+        var id: number = problem.contestId;
+        problem.solved = groupedSubmission[id.toString()]?.some((submission: Submission) => submission.verdict == Constants.OK) ?? false;
       });
     });
   }
@@ -53,3 +52,10 @@ export class ContestsComponent implements OnInit {
     return this.category == category;
   }
 }
+
+var groupBy = function(xs: any, key: any) {
+  return xs.reduce(function(rv: any, x: any) {
+    (rv[x[key]] = rv[x[key]] || []).push(x);
+    return rv;
+  }, {});
+};

@@ -1,0 +1,13 @@
+<input [(ngModel)]="handle">
+<button [disabled]="!canFetch" (click)="UpdateHandle()">fetch</button>
+<nav>
+    <button (click)="UpdateCategory('Div. 1')">Div. 1</button>
+    <button (click)="UpdateCategory('Div. 2')">Div. 2'</button>
+    <button (click)="UpdateCategory('Div. 3')">Div. 3</button>
+    <button (click)="UpdateCategory('Div. 4')">Div. 4</button>
+    <button (click)="UpdateCategory('Div. 1 + Div. 2')">Div. 1 + Div. 2</button>
+    <button (click)="UpdateCategory('Global')">Global</button>
+    <button (click)="UpdateCategory('Educational')">Educational</button>
+    <button (click)="UpdateCategory('All')">All</button>
+    <button (click)="UpdateCategory('Others')">Others</button>
+</nav>

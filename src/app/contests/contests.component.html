@@ -1,3 +1,5 @@
+<app-header (handleEvent)="handle=$event; UpdateHandleData();" (categoryEvent)="category=$event" [canFetch]="canFetch"></app-header>
+
 <h1>Contests</h1>
 <table>
     <tr>
@@ -5,7 +7,8 @@
         <th>Contest Name</th>
         <th>Contest Phase</th>
     </tr>
-    <ng-container *ngFor="let contest of contests">
+    <ng-container *ngFor="let contest of GetSelectedContest(); index as index">
+        {{index}}
         <app-contest [contest]="contest"></app-contest>
     </ng-container>
 </table>

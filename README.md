@@ -33,6 +33,6 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 ```
 
 ## TODO:
-1. Local storage to reduce the cf calls
 2. Input handles
-3. Hide/show contests based on options
+3. Hide/show contests based on options (completed)
+4. Footer and pagination

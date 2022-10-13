@@ -13,11 +13,11 @@ export class Constants {
 }
 
 export const ContestCategory: string[] = [
+    Constants.DIV_1_DIV_2,
     Constants.DIV_1,
     Constants.DIV_2,
     Constants.DIV_3,
     Constants.DIV_4,
-    Constants.DIV_1_DIV_2,
     Constants.GLOBAL,
     Constants.EDUCATIONAL,
     Constants.OTHERS

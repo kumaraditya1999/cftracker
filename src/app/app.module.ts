@@ -6,10 +6,10 @@ import { ContestsComponent } from './contests/contests.component';
 import { ContestComponent } from './contests/contest/contest.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ProblemComponent } from './contests/contest/problem/problem.component';
-import { NavbarComponent } from './contests/navbar/navbar.component';
+import { HeaderComponent } from './contests/header/header.component';
 
 @NgModule({
-    declarations: [AppComponent, ContestsComponent, ContestComponent, ProblemComponent, NavbarComponent],
+    declarations: [AppComponent, ContestsComponent, ContestComponent, ProblemComponent, HeaderComponent],
     imports: [BrowserModule, FormsModule, HttpClientModule],
     bootstrap: [AppComponent]
 })

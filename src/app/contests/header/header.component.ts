@@ -1,11 +1,11 @@
-import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
-  selector: 'app-navbar',
-  templateUrl: './navbar.component.html',
-  styleUrls: ['./navbar.component.css']
+  selector: 'app-header',
+  templateUrl: './header.component.html',
+  styleUrls: ['./header.component.css']
 })
-export class NavbarComponent implements OnInit {
+export class HeaderComponent implements OnInit {
 
   constructor() { }
 
@@ -13,7 +13,7 @@ export class NavbarComponent implements OnInit {
   handle: string = "";
 
   @Output() handleEvent = new EventEmitter<string>();
-  @Output() categoryEvent = new EventEmitter<string>(); 
+  @Output() categoryEvent = new EventEmitter<string>();
 
   ngOnInit(): void {
   }
@@ -26,4 +26,5 @@ export class NavbarComponent implements OnInit {
   UpdateCategory(category: string) {
     this.categoryEvent.emit(category);
   }
+
 }

@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { CfResponse } from '../models/cfresponse';
 import { Constants } from '../models/constants';
 import { Contest } from '../models/contest';
 import { Problem } from '../models/problem';
-import { ProblemSet } from '../models/problemset';
 import { Submission } from '../models/submission';
 import { CfService } from '../services/cf.service';
 
@@ -26,6 +24,7 @@ export class ContestsComponent implements OnInit {
 
   contests: Contest[] = [];
   problems: Problem[] = [];
+  selecteIndex: number[] = [];
 
   handle: string = "";
   canFetch: boolean = false;
@@ -38,18 +37,38 @@ export class ContestsComponent implements OnInit {
     this.cfService.GetAllSubmissions(this.handle)
     .then((submissions: Submission[]) => {
       var groupedSubmission = groupBy(submissions, "contestId");
-      this.problems.forEach(problem => {
-        var id: number = problem.contestId;
-        problem.solved = groupedSubmission[id.toString()]?.some((submission: Submission) => submission.verdict == Constants.OK) ?? false;
+      this.contests.forEach(contest => {
+        var id: number = contest.id;
+        var constestSubmission : Submission[] = groupedSubmission[id];
+        contest.problems.forEach(problem => {
+          problem.solved = constestSubmission?.some((submission: Submission) => submission.verdict == Constants.OK && submission.problem.index == problem.index) ?? false;
+        });
       });
     });
   }
 
-  IsSelectedCategory(category: string) {
+  IsSelectedCategory(category: string) : boolean {
     if (this.category == Constants.ALL) {
       return true;
     }
     return this.category == category;
+  }
+
+  GetSelectedIndexes() : string[] {
+    var indexes : string[] = [];
+    for (var i in this.contests) {
+      if (this.IsSelectedCategory(this.contests[i].category)) {
+        indexes.push(i);
+      }
+    }
+    return indexes;
+  }
+
+  GetSelectedContest(): Contest[] {
+    var indexes = this.GetSelectedIndexes();
+    var contests: Contest[] = [];
+    indexes.forEach(index => contests.push(this.contests[<any>index]));
+    return contests;
   }
 }
 

@@ -7,9 +7,8 @@
         <th>Contest Name</th>
         <th>Contest Phase</th>
     </tr>
-    <ng-container *ngFor="let contest of contests">
-        <ng-container *ngIf="IsSelectedCategory(contest.category)">
-            <app-contest [contest]="contest"></app-contest>
-        </ng-container>
+    <ng-container *ngFor="let contest of GetSelectedContest(); index as index">
+        {{index}}
+        <app-contest [contest]="contest"></app-contest>
     </ng-container>
 </table>

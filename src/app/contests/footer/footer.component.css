@@ -2,3 +2,10 @@
     padding-left: 15px !important;
     padding-right: 15px !important;
 }
+
+.sticky-bottom {
+    position: fixed;
+    width: 100%;
+    background-color: white;
+    bottom: 0px;
+}

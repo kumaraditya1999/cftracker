@@ -1,0 +1,7 @@
+.middle {
+    top: 100px;
+    bottom: 100px;
+    position: absolute;
+    overflow: auto;
+    width: 100%;
+}

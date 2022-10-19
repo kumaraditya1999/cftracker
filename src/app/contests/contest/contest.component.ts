@@ -9,6 +9,8 @@ import { Contest } from '../../models/contest';
 export class ContestComponent implements OnInit {
 
   @Input() contest: Contest = {} as Contest;
+  @Input() index: number = -1;
+  
   constructor() { }
 
   ngOnInit(): void {

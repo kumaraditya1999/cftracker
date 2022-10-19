@@ -12,14 +12,7 @@ import { CfService } from '../services/cf.service';
 })
 export class ContestsComponent implements OnInit {
   constructor(private cfService: CfService) {
-    Promise.all([this.cfService.GetAllContests(), this.cfService.GetAllProblems()])
-    .then((values) => {
-      this.contests = values[0];
-      this.problems = values[1];
-      cfService.AddProblemsToContests(this.problems, this.contests);
-      this.canFetch = true;
-      console.log(this.canFetch);
-    });
+    this.SetUpData();
   }
 
   contests: Contest[] = [];
@@ -30,7 +23,22 @@ export class ContestsComponent implements OnInit {
   canFetch: boolean = false;
   category: string = Constants.ALL;
 
+  page: number = 1;
+  pageSize: number = 10;
+  pageSizes: number[] = [10, 25, 50, 100]
+
   ngOnInit(): void {
+  }
+
+  SetUpData() {
+    Promise.all([this.cfService.GetAllContests(), this.cfService.GetAllProblems()])
+    .then((values) => {
+      this.contests = values[0];
+      this.problems = values[1];
+      this.cfService.AddProblemsToContests(this.problems, this.contests);
+      this.canFetch = true;
+      console.log(this.canFetch);
+    });
   }
 
   UpdateHandleData(): void {
@@ -44,6 +52,7 @@ export class ContestsComponent implements OnInit {
           problem.solved = constestSubmission?.some((submission: Submission) => submission.verdict == Constants.OK && submission.problem.index == problem.index) ?? false;
         });
       });
+      console.log("done");
     });
   }
 
@@ -69,6 +78,16 @@ export class ContestsComponent implements OnInit {
     var contests: Contest[] = [];
     indexes.forEach(index => contests.push(this.contests[<any>index]));
     return contests;
+  }
+
+  OnTableDataChange(event: any) {
+    this.page = event;
+    // this.SetUpData();
+  }
+
+  OnTableSizeChange(event: any): void {
+    this.pageSize = event.target.value;
+    this.page = 1;
   }
 }
 

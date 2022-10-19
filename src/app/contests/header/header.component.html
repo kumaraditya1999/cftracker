@@ -5,8 +5,7 @@
         <button mat-button
         [class.mat-raised-button]="category==selectedCategory" 
         (click)="UpdateCategory(category)" 
-        color="{{category==selectedCategory ? 'primary' : ''}}"
-        selected>
+        color="{{category==selectedCategory ? 'primary' : ''}}">
             {{category}}
         </button>
     </mat-grid-tile>

@@ -17,6 +17,7 @@ export class HeaderComponent implements OnInit {
 
   @Input() canFetch: boolean = false;
   handle: string = "";
+  selectedCategory: string = Constants.ALL;
 
   @Output() handleEvent = new EventEmitter<string>();
   @Output() categoryEvent = new EventEmitter<string>();
@@ -32,7 +33,8 @@ export class HeaderComponent implements OnInit {
   }
 
   UpdateCategory(category: string) {
-    this.categoryEvent.emit(category);
+    this.selectedCategory = category;
+    this.categoryEvent.emit(this.selectedCategory);
   }
 
 }

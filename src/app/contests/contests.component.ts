@@ -25,7 +25,6 @@ export class ContestsComponent implements OnInit {
 
   page: number = 1;
   pageSize: number = 10;
-  pageSizes: number[] = [10, 25, 50, 100]
 
   ngOnInit(): void {
   }
@@ -82,11 +81,6 @@ export class ContestsComponent implements OnInit {
 
   OnTableDataChange(event: any) {
     this.page = event;
-  }
-
-  OnTableSizeChange(event: any): void {
-    this.pageSize = event.target.value;
-    this.page = 1;
   }
 }
 

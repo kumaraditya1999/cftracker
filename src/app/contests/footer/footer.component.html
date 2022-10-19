@@ -1,0 +1,12 @@
+<mat-grid-list cols="1" rowHeight="75px">
+    <mat-grid-tile [colspan]="1">
+        <div class="mat-elevation-z3">
+            <pagination-controls
+                previousLabel="Prev"
+                nextLabel="Next"
+                (pageChange)="OnTableDataChange($event)"
+                class="padded">
+            </pagination-controls>
+        </div>
+    </mat-grid-tile>
+</mat-grid-list>

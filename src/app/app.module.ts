@@ -14,6 +14,7 @@ import { MatSelectModule } from '@angular/material/select';
 import {MatGridListModule} from '@angular/material/grid-list';
 import {MatInputModule} from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
+import { FooterComponent } from './contests/footer/footer.component';
 
 @NgModule({
     declarations: [
@@ -21,7 +22,7 @@ import { MatIconModule } from '@angular/material/icon';
         ContestsComponent, 
         ContestComponent, 
         ProblemComponent, 
-        HeaderComponent
+        HeaderComponent, FooterComponent
     ],
     imports: [
         BrowserModule,

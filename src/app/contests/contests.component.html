@@ -1,27 +1,14 @@
 <app-header (handleEvent)="handle=$event; UpdateHandleData();" (categoryEvent)="category=$event" [canFetch]="canFetch"></app-header>
-
-<h1>Contests</h1>
-<table>
-    <tr>
-        <th>Contest Id</th>
-        <th>Contest Name</th>
-        <th>Contest Phase</th>
-    </tr>
-    <ng-container
-        *ngFor="
-            let contest of GetSelectedContest() 
-                | paginate 
-                    : {
-                        itemsPerPage: pageSize,
-                        currentPage: page,
-                        totalItems: selecteIndex.length
-                    };
-                let index = index">
-        <app-contest [contest]="contest" [index]="1 + index + (page - 1) * pageSize"></app-contest>
-    </ng-container>
-    <pagination-controls
-      previousLabel="Prev"
-      nextLabel="Next"
-      (pageChange)="OnTableDataChange($event)">
-    </pagination-controls>
-</table>
+<ng-container
+    *ngFor="
+        let contest of GetSelectedContest() 
+            | paginate 
+                : {
+                    itemsPerPage: pageSize,
+                    currentPage: page,
+                    totalItems: selecteIndex.length
+                };
+            let index = index">
+    <app-contest [contest]="contest" [index]="1 + index + (page - 1) * pageSize"></app-contest>
+</ng-container>
+<app-footer (handlePaginationEvent)="OnTableDataChange($event)"></app-footer>

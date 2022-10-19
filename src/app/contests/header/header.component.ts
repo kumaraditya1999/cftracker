@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Constants, ContestCategory } from 'src/app/models/constants';
 
 @Component({
   selector: 'app-header',
@@ -7,13 +8,20 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor() { }
+  constructor() { 
+    this.allCategories = [Constants.ALL];
+    ContestCategory.forEach(category => {
+      this.allCategories.push(category);
+    });
+  }
 
   @Input() canFetch: boolean = false;
   handle: string = "";
 
   @Output() handleEvent = new EventEmitter<string>();
   @Output() categoryEvent = new EventEmitter<string>();
+
+  allCategories: string[] = []
 
   ngOnInit(): void {
   }

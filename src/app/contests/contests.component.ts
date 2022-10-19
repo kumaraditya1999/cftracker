@@ -82,7 +82,6 @@ export class ContestsComponent implements OnInit {
 
   OnTableDataChange(event: any) {
     this.page = event;
-    // this.SetUpData();
   }
 
   OnTableSizeChange(event: any): void {

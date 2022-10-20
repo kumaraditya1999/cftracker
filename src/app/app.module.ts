@@ -15,6 +15,7 @@ import {MatGridListModule} from '@angular/material/grid-list';
 import {MatInputModule} from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { FooterComponent } from './contests/footer/footer.component';
+import {MatDividerModule} from '@angular/material/divider';
 
 @NgModule({
     declarations: [
@@ -34,7 +35,8 @@ import { FooterComponent } from './contests/footer/footer.component';
         MatSelectModule,
         MatGridListModule, 
         MatInputModule,
-        MatIconModule
+        MatIconModule,
+        MatDividerModule
     ],
     bootstrap: [AppComponent]
 })

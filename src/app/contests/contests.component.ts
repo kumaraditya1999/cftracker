@@ -24,7 +24,7 @@ export class ContestsComponent implements OnInit {
   category: string = Constants.ALL;
 
   page: number = 1;
-  pageSize: number = 10;
+  pageSize: number = 50;
 
   ngOnInit(): void {
   }

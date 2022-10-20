@@ -65,7 +65,7 @@ export class ContestsComponent implements OnInit {
   GetSelectedIndexes() : string[] {
     var indexes : string[] = [];
     for (var i in this.contests) {
-      if (this.IsSelectedCategory(this.contests[i].category)) {
+      if (this.contests[i].problems.length > 0 && this.IsSelectedCategory(this.contests[i].category)) {
         indexes.push(i);
       }
     }

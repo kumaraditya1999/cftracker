@@ -1,1 +1,7 @@
-<a mat-stroked-button class="problems" href="{{problem.url}}">{{problem.index}}</a>
+<a mat-stroked-button class="problems" 
+href="{{problem.url}}" 
+[class.solved]="problem.solved" 
+[ngClass]="!problem.solved ? GetRatingClass(problem.rating) : '' "
+target="_blank">
+    {{problem.index}}
+</a>

@@ -12,7 +12,7 @@
             </ng-container>
         </ng-container>
     </mat-grid-tile>
-    <mat-grid-tile [colspan]="11">
+    <mat-grid-tile [colspan]="11" *ngIf="contest.problems.length > 11">
         <ng-container *ngFor="let problem of contest.problems; let index = index">
             <ng-container *ngIf="index >= 11">
                 <app-problem [problem]="problem"></app-problem>

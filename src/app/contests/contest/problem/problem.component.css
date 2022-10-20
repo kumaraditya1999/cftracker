@@ -2,3 +2,80 @@
     margin: 2px;
     width: 100px;
 }
+
+a {
+    border-width: 2px;
+    border-color: #5e5d5d;
+}
+
+.solved {
+    background-color: #2fe359;
+    border-color: #17a53d;
+}
+
+.lgm {
+    color: #fc1f1f;
+    border-color: #aa0000;
+    background-color: #aa00000d;
+
+}
+
+.igm {
+    color: #ff3333;
+    border-color: #ff3333;
+    background-color: #ff33330d;
+}
+
+.gm {
+    color: #ff7777;
+    border-color: #ff7777;
+    background-color: #ff77770d;
+}
+
+.im {
+    color: #ff9901;
+    border-color: #ff9901;
+    background-color: #ff99010d;
+}
+
+.master {
+    color: #f6b35c;
+    border-color: #f6b35c;
+    background-color: #f6b35c0d;
+}
+
+.cm {
+    color: #c75ac7;
+    border-color: #c75ac7;
+    background-color: #c75ac70d;
+}
+
+.expert {
+    color: #2a2ad5;
+    border-color: #2a2ad5;
+    background-color: #2a2ad50d;
+}
+
+.specialist {
+    color: #22b181;
+    border-color: #22b181;
+    background-color: #22b1810d;
+}
+
+.pupil {
+    color: #45d045;
+    border-color: #45d045;
+    background-color: #45d0450d;
+}
+
+.newbie {
+    color: #919191;
+    border-color: #919191;
+    background-color: #9191910d;
+}
+
+.default {
+    color: #919191;
+    border-color: #919191;
+    background-color: #9191910d;
+}

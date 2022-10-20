@@ -48,7 +48,11 @@ export class ContestsComponent implements OnInit {
         var id: number = contest.id;
         var constestSubmission : Submission[] = groupedSubmission[id];
         contest.problems.forEach(problem => {
-          problem.solved = constestSubmission?.some((submission: Submission) => submission.verdict == Constants.OK && submission.problem.index == problem.index) ?? false;
+          if (constestSubmission?.some((submission: Submission) => submission.verdict == Constants.OK && submission.problem.index == problem.index)) {
+            problem.status = Constants.SOLVED;
+          } else if (constestSubmission?.some((submission: Submission) => submission.problem.index == problem.index)) {
+            problem.status = Constants.ATTEMPTED;
+          }
         });
       });
       console.log("done");

@@ -10,6 +10,8 @@ export class Constants {
     static readonly OTHERS = "Others";
     static readonly FINISHED = "FINISHED";
     static readonly OK = "OK";
+    static readonly SOLVED = "solved";
+    static readonly ATTEMPTED = "attempted";
 }
 
 export const ContestCategory: string[] = [

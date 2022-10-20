@@ -4,5 +4,5 @@ export interface Problem {
     name: string;
     rating: number;
     url: string;
-    solved: boolean;
+    status: string;
 }

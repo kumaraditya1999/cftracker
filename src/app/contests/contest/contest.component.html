@@ -1,9 +1,9 @@
 <mat-grid-list cols="14" rowHeight="80px">
     <mat-grid-tile [colspan]="0.5" style="border:1px">
-        {{index}}.
+        {{index}}
     </mat-grid-tile>
     <mat-grid-tile [colspan]="1.5">
-      <a href="{{contest.url}}" target="_blank" style="text-overflow: ellipsis;">{{ (contest.name.length > 75) ? (contest.name | slice:0:75)+'..':contest.name}}</a>
+      <a href="{{contest.url}}" class="contest-name" target="_blank">{{ (contest.name.length > 75) ? (contest.name | slice:0:75)+'..':contest.name}}</a>
     </mat-grid-tile>
     <mat-grid-tile [colspan]="math.min(11, contest.problems.length)">
         <ng-container *ngFor="let problem of contest.problems; let index = index">

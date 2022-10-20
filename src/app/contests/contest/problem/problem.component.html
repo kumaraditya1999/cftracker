@@ -1,7 +1,6 @@
 <a mat-stroked-button class="problems" 
 href="{{problem.url}}" 
-[class.solved]="problem.solved" 
-[ngClass]="!problem.solved ? GetRatingClass(problem.rating) : '' "
+[ngClass]="problem.status == '' ? GetRatingClass(problem.rating) : problem.status "
 target="_blank">
     {{problem.index}}
 </a>

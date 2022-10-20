@@ -10,15 +10,17 @@ export class Constants {
     static readonly OTHERS = "Others";
     static readonly FINISHED = "FINISHED";
     static readonly OK = "OK";
+    static readonly SOLVED = "solved";
+    static readonly ATTEMPTED = "attempted";
 }
 
 export const ContestCategory: string[] = [
     Constants.DIV_1_DIV_2,
+    Constants.EDUCATIONAL,
     Constants.DIV_1,
     Constants.DIV_2,
     Constants.DIV_3,
     Constants.DIV_4,
     Constants.GLOBAL,
-    Constants.EDUCATIONAL,
     Constants.OTHERS
 ]

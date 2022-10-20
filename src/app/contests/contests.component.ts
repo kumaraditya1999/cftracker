@@ -12,14 +12,7 @@ import { CfService } from '../services/cf.service';
 })
 export class ContestsComponent implements OnInit {
   constructor(private cfService: CfService) {
-    Promise.all([this.cfService.GetAllContests(), this.cfService.GetAllProblems()])
-    .then((values) => {
-      this.contests = values[0];
-      this.problems = values[1];
-      cfService.AddProblemsToContests(this.problems, this.contests);
-      this.canFetch = true;
-      console.log(this.canFetch);
-    });
+    this.SetUpData();
   }
 
   contests: Contest[] = [];
@@ -30,7 +23,21 @@ export class ContestsComponent implements OnInit {
   canFetch: boolean = false;
   category: string = Constants.ALL;
 
+  page: number = 1;
+  pageSize: number = 50;
+
   ngOnInit(): void {
+  }
+
+  SetUpData() {
+    Promise.all([this.cfService.GetAllContests(), this.cfService.GetAllProblems()])
+    .then((values) => {
+      this.contests = values[0];
+      this.problems = values[1];
+      this.cfService.AddProblemsToContests(this.problems, this.contests);
+      this.canFetch = true;
+      console.log(this.canFetch);
+    });
   }
 
   UpdateHandleData(): void {
@@ -41,9 +48,14 @@ export class ContestsComponent implements OnInit {
         var id: number = contest.id;
         var constestSubmission : Submission[] = groupedSubmission[id];
         contest.problems.forEach(problem => {
-          problem.solved = constestSubmission?.some((submission: Submission) => submission.verdict == Constants.OK && submission.problem.index == problem.index) ?? false;
+          if (constestSubmission?.some((submission: Submission) => submission.verdict == Constants.OK && submission.problem.index == problem.index)) {
+            problem.status = Constants.SOLVED;
+          } else if (constestSubmission?.some((submission: Submission) => submission.problem.index == problem.index)) {
+            problem.status = Constants.ATTEMPTED;
+          }
         });
       });
+      console.log("done");
     });
   }
 
@@ -57,7 +69,7 @@ export class ContestsComponent implements OnInit {
   GetSelectedIndexes() : string[] {
     var indexes : string[] = [];
     for (var i in this.contests) {
-      if (this.IsSelectedCategory(this.contests[i].category)) {
+      if (this.contests[i].problems.length > 0 && this.IsSelectedCategory(this.contests[i].category)) {
         indexes.push(i);
       }
     }
@@ -69,6 +81,10 @@ export class ContestsComponent implements OnInit {
     var contests: Contest[] = [];
     indexes.forEach(index => contests.push(this.contests[<any>index]));
     return contests;
+  }
+
+  OnTableDataChange(event: any) {
+    this.page = event;
   }
 }
 

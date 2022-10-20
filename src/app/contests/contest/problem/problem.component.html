@@ -1,3 +1,6 @@
-<span>
-    <a href="{{problem.url}}">{{problem.index}}: {{problem.solved}} --</a>
-</span>
+<a mat-stroked-button class="problems" 
+href="{{problem.url}}" 
+[ngClass]="problem.status == '' ? GetRatingClass(problem.rating) : problem.status "
+target="_blank">
+    {{problem.index}}
+</a>

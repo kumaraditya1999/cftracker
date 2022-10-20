@@ -1,13 +1,23 @@
-<input [(ngModel)]="handle">
-<button [disabled]="!canFetch" (click)="UpdateHandle()">fetch</button>
-<nav>
-    <button (click)="UpdateCategory('Div. 1')">Div. 1</button>
-    <button (click)="UpdateCategory('Div. 2')">Div. 2'</button>
-    <button (click)="UpdateCategory('Div. 3')">Div. 3</button>
-    <button (click)="UpdateCategory('Div. 4')">Div. 4</button>
-    <button (click)="UpdateCategory('Div. 1 + Div. 2')">Div. 1 + Div. 2</button>
-    <button (click)="UpdateCategory('Global')">Global</button>
-    <button (click)="UpdateCategory('Educational')">Educational</button>
-    <button (click)="UpdateCategory('All')">All</button>
-    <button (click)="UpdateCategory('Others')">Others</button>
-</nav>
+<div class="sticky-top">
+    <mat-grid-list class="position-fixed" [class.mat-elevation-z3]="true" cols="{{allCategories.length + 2}}" rowHeight="60px" color="blue">
+        <mat-grid-tile
+        *ngFor="let category of allCategories"
+        [colspan]="1">
+            <button mat-button
+            [class.mat-raised-button]="category==selectedCategory" 
+            (click)="UpdateCategory(category)" 
+            color="{{category==selectedCategory ? 'primary' : ''}}">
+                {{category}}
+            </button>
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="2">
+            <mat-form-field>
+                <mat-label>Cf Handle</mat-label>
+                <input matInput type="text" [(ngModel)]="handle">
+                <button *ngIf="handle" matSuffix mat-icon-button aria-label="Clear" [disabled]="!canFetch" (click)="UpdateHandle()">
+                    <mat-icon>sync</mat-icon>
+                </button>
+            </mat-form-field>
+        </mat-grid-tile>
+    </mat-grid-list>
+</div>

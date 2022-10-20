@@ -1,7 +1,22 @@
-<div>
-    <a href="{{contest.url}}" target="_blank">{{contest.name}}</a>
-    <p>{{contest.category}}</p>
-    <ng-container *ngFor="let problem of contest.problems">
-        <app-problem [problem]="problem"></app-problem>
-    </ng-container>
-</div>
+<mat-grid-list cols="14" rowHeight="80px">
+    <mat-grid-tile [colspan]="0.5" style="border:1px">
+        {{index}}
+    </mat-grid-tile>
+    <mat-grid-tile [colspan]="1.5">
+      <a href="{{contest.url}}" class="contest-name" target="_blank">{{ (contest.name.length > 75) ? (contest.name | slice:0:75)+'..':contest.name}}</a>
+    </mat-grid-tile>
+    <mat-grid-tile [colspan]="math.min(11, contest.problems.length)">
+        <ng-container *ngFor="let problem of contest.problems; let index = index">
+            <ng-container *ngIf="index < 11">
+                <app-problem [problem]="problem"></app-problem>
+            </ng-container>
+        </ng-container>
+    </mat-grid-tile>
+    <mat-grid-tile [colspan]="11" *ngIf="contest.problems.length > 11">
+        <ng-container *ngFor="let problem of contest.problems; let index = index">
+            <ng-container *ngIf="index >= 11">
+                <app-problem [problem]="problem"></app-problem>
+            </ng-container>
+        </ng-container>
+    </mat-grid-tile>
+</mat-grid-list>

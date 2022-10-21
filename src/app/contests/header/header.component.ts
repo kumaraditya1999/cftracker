@@ -8,7 +8,7 @@ import { Constants, ContestCategory } from 'src/app/models/constants';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor() { 
+  constructor() {
     this.allCategories = [Constants.ALL];
     ContestCategory.forEach(category => {
       this.allCategories.push(category);
@@ -22,7 +22,7 @@ export class HeaderComponent implements OnInit {
   @Output() categoryEvent = new EventEmitter<string>();
 
   allCategories: string[] = [];
-  
+
   ngOnInit(): void {
   }
 

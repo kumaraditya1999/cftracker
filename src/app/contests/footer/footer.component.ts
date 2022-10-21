@@ -8,7 +8,7 @@ import { Component, OnInit, Output, Input, EventEmitter } from '@angular/core';
 export class FooterComponent implements OnInit {
 
   constructor() { }
-  
+
   @Output() handlePaginationEvent = new EventEmitter<any>();
 
   @Input() showProblemRatings: boolean = false;

@@ -11,30 +11,31 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule } from '@angular/material/button';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { MatSelectModule } from '@angular/material/select';
-import {MatGridListModule} from '@angular/material/grid-list';
-import {MatInputModule} from '@angular/material/input';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { FooterComponent } from './contests/footer/footer.component';
-import {MatDividerModule} from '@angular/material/divider';
-import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 
 @NgModule({
     declarations: [
-        AppComponent, 
-        ContestsComponent, 
-        ContestComponent, 
-        ProblemComponent, 
-        HeaderComponent, FooterComponent
+        AppComponent,
+        ContestsComponent,
+        ContestComponent,
+        ProblemComponent,
+        HeaderComponent, 
+        FooterComponent
     ],
     imports: [
         BrowserModule,
-        FormsModule, 
-        HttpClientModule, 
-        BrowserAnimationsModule, 
-        MatButtonModule, 
-        NgxPaginationModule, 
+        FormsModule,
+        HttpClientModule,
+        BrowserAnimationsModule,
+        MatButtonModule,
+        NgxPaginationModule,
         MatSelectModule,
-        MatGridListModule, 
+        MatGridListModule,
         MatInputModule,
         MatIconModule,
         MatDividerModule,

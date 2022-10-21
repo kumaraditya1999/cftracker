@@ -1,12 +1,9 @@
 <div class="sticky-top">
-    <mat-grid-list class="position-fixed" [class.mat-elevation-z3]="true" cols="{{allCategories.length + 2}}" rowHeight="60px" color="blue">
-        <mat-grid-tile
-        *ngFor="let category of allCategories"
-        [colspan]="1">
-            <button mat-button
-            [class.mat-raised-button]="category==selectedCategory" 
-            (click)="UpdateCategory(category)" 
-            color="{{category==selectedCategory ? 'primary' : ''}}">
+    <mat-grid-list class="position-fixed" [class.mat-elevation-z3]="true" cols="{{allCategories.length + 2}}"
+        rowHeight="60px">
+        <mat-grid-tile *ngFor="let category of allCategories" [colspan]="1">
+            <button mat-button [class.mat-raised-button]="category==selectedCategory" (click)="UpdateCategory(category)"
+                color="{{category==selectedCategory ? 'primary' : ''}}">
                 {{category}}
             </button>
         </mat-grid-tile>

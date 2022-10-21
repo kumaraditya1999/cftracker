@@ -13,7 +13,9 @@ export class ContestComponent implements OnInit {
   @Input() showProblemRatings: boolean = false;
 
   math: any = Math;
-  
+  maxNameLength: number = 75;
+  maxColumns: number = 10;
+
   constructor() { }
 
   ngOnInit(): void {

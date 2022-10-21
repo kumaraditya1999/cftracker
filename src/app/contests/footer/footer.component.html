@@ -4,23 +4,22 @@
         </mat-grid-tile>
         <mat-grid-tile [colspan]="8">
             <div class="mat-elevation-z3">
-                <pagination-controls
-                    previousLabel="Prev"
-                    nextLabel="Next"
-                    (pageChange)="OnTableDataChange($event)"
+                <pagination-controls previousLabel="Prev" nextLabel="Next" (pageChange)="OnTableDataChange($event)"
                     class="padded">
                 </pagination-controls>
             </div>
         </mat-grid-tile>
         <mat-grid-tile [colspan]="2" class="toggle-switch">
             <small> Show Problem&nbsp;&nbsp;&nbsp;&nbsp; Ratings</small>
-            <mat-slide-toggle [(ngModel)]="showProblemRatings" color="primary" (change)="ToggleShowProblemRatings()"></mat-slide-toggle>
+            <mat-slide-toggle [(ngModel)]="showProblemRatings" color="primary" (change)="ToggleShowProblemRatings()">
+            </mat-slide-toggle>
         </mat-grid-tile>
         <mat-grid-tile [colspan]="1">
         </mat-grid-tile>
         <mat-grid-tile [colspan]="2" class="toggle-switch">
             <small> Hide Completed Contest</small>
-            <mat-slide-toggle [(ngModel)]="hideCompletedContests" (change)="ToggleHideCompletedContests()" color="primary"></mat-slide-toggle>
+            <mat-slide-toggle [(ngModel)]="hideCompletedContests" (change)="ToggleHideCompletedContests()"
+                color="primary"></mat-slide-toggle>
         </mat-grid-tile>
         <mat-grid-tile [colspan]="1">
         </mat-grid-tile>

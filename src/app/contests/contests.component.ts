@@ -36,16 +36,16 @@ export class ContestsComponent implements OnInit {
 
   SetUpData() {
     Promise.all([this.cfService.GetAllContests(), this.cfService.GetAllProblems()])
-    .then((values) => {
-      this.contests = values[0];
-      this.problems = values[1];
-      this.cfService.AddProblemsToContests(this.problems, this.contests);
-      this.canFetch = true;
-      this.UpdateHandleData();
-      this.cfService.SyncMissingProblemsFromDiv1(this.contests);
-    }).catch((error) => {
-      alert(error);
-    });
+      .then((values) => {
+        this.contests = values[0];
+        this.problems = values[1];
+        this.cfService.AddProblemsToContests(this.problems, this.contests);
+        this.canFetch = true;
+        this.UpdateHandleData();
+        this.cfService.SyncMissingProblemsFromDiv1(this.contests);
+      }).catch((error) => {
+        alert(error);
+      });
   }
 
   UpdateHandleData(): void {
@@ -61,34 +61,34 @@ export class ContestsComponent implements OnInit {
     }
 
     this.cfService.GetAllSubmissions(this.handle)
-    .then((submissions: Submission[]) => {
-      console.log(submissions);
-      var groupedSubmission = groupBy(submissions, "contestId");
-      this.contests.forEach(contest => {
-        var id: number = contest.id;
-        var constestSubmission : Submission[] = groupedSubmission[id];
-        contest.problems.forEach(problem => {
-          if (constestSubmission?.some((submission: Submission) => submission.verdict == Constants.OK && submission.problem.index == problem.index)) {
-            problem.status = Constants.SOLVED;
-          } else if (constestSubmission?.some((submission: Submission) => submission.problem.index == problem.index)) {
-            problem.status = Constants.ATTEMPTED;
-          } 
+      .then((submissions: Submission[]) => {
+        console.log(submissions);
+        var groupedSubmission = groupBy(submissions, "contestId");
+        this.contests.forEach(contest => {
+          var id: number = contest.id;
+          var constestSubmission: Submission[] = groupedSubmission[id];
+          contest.problems.forEach(problem => {
+            if (constestSubmission?.some((submission: Submission) => submission.verdict == Constants.OK && submission.problem.index == problem.index)) {
+              problem.status = Constants.SOLVED;
+            } else if (constestSubmission?.some((submission: Submission) => submission.problem.index == problem.index)) {
+              problem.status = Constants.ATTEMPTED;
+            }
+          });
         });
+      }).catch((error: HttpErrorResponse) => {
+        alert(error.error.comment);
       });
-    }).catch((error : HttpErrorResponse) => {
-      alert(error.error.comment);
-    });
   }
 
-  IsSelectedCategory(category: string) : boolean {
+  IsSelectedCategory(category: string): boolean {
     if (this.category == Constants.ALL) {
       return true;
     }
     return this.category == category;
   }
 
-  GetSelectedIndexes() : string[] {
-    var indexes : string[] = [];
+  GetSelectedIndexes(): string[] {
+    var indexes: string[] = [];
     for (var i in this.contests) {
       if (this.contests[i].problems.length > 0 && this.IsSelectedCategory(this.contests[i].category)) {
         if (!this.hideCompletedContests) {
@@ -115,8 +115,8 @@ export class ContestsComponent implements OnInit {
   }
 }
 
-var groupBy = function(xs: any, key: any) {
-  return xs.reduce(function(rv: any, x: any) {
+var groupBy = function (xs: any, key: any) {
+  return xs.reduce(function (rv: any, x: any) {
     (rv[x[key]] = rv[x[key]] || []).push(x);
     return rv;
   }, {});

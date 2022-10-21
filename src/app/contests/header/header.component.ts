@@ -8,27 +8,25 @@ import { Constants, ContestCategory } from 'src/app/models/constants';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor() { 
+  constructor() {
     this.allCategories = [Constants.ALL];
     ContestCategory.forEach(category => {
       this.allCategories.push(category);
     });
   }
 
-  @Input() canFetch: boolean = false;
-  handle: string = "";
+  @Input() handle: string = "";
   selectedCategory: string = Constants.ALL;
 
   @Output() handleEvent = new EventEmitter<string>();
   @Output() categoryEvent = new EventEmitter<string>();
 
-  allCategories: string[] = []
+  allCategories: string[] = [];
 
   ngOnInit(): void {
   }
 
   UpdateHandle() {
-    console.log(this.handle);
     this.handleEvent.emit(this.handle);
   }
 

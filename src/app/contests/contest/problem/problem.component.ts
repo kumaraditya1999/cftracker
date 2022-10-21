@@ -8,6 +8,7 @@ import { Problem } from 'src/app/models/problem';
 })
 export class ProblemComponent implements OnInit {
   @Input() problem: Problem = {} as Problem;
+  @Input() showProblemRatings: boolean = false;
 
   constructor() { }
 
@@ -15,6 +16,9 @@ export class ProblemComponent implements OnInit {
   }
 
   GetRatingClass(rating: number): string {
+    if (!this.showProblemRatings) {
+      return "default";
+    }
     if (rating < 1200) {
       return "newbie";
     } else if (rating < 1400) {

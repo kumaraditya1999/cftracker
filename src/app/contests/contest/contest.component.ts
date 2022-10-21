@@ -10,9 +10,12 @@ export class ContestComponent implements OnInit {
 
   @Input() contest: Contest = {} as Contest;
   @Input() index: number = -1;
+  @Input() showProblemRatings: boolean = false;
 
   math: any = Math;
-  
+  maxNameLength: number = 75;
+  maxColumns: number = 10;
+
   constructor() { }
 
   ngOnInit(): void {

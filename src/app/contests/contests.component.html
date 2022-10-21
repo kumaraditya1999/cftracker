@@ -1,8 +1,8 @@
-<app-header (handleEvent)="handle=$event; UpdateHandleData();" (categoryEvent)="category=$event;page=1" [canFetch]="canFetch"></app-header>
+<app-header (handleEvent)="handle=$event; SetUpData();" (categoryEvent)="category=$event;page=1" [handle]="handle">
+</app-header>
 
 <div class="middle">
-    <ng-container
-        *ngFor="
+    <ng-container *ngFor="
             let contest of GetSelectedContest() 
                 | paginate 
                     : {
@@ -11,8 +11,13 @@
                         totalItems: selecteIndex.length
                     };
                 let index = index">
-        <app-contest [contest]="contest" [index]="1 + index + (page - 1) * pageSize"></app-contest>
+        <app-contest [contest]="contest" [index]="1 + index + (page - 1) * pageSize"
+            [showProblemRatings]="showProblemRatings"></app-contest>
     </ng-container>
 </div>
 
-<app-footer (handlePaginationEvent)="OnTableDataChange($event)"></app-footer>
+<app-footer (handlePaginationEvent)="OnTableDataChange($event)"
+    (toggleHideCompletedContestsEvent)="hideCompletedContests=!hideCompletedContests"
+    (toggleShowProblemRatingsEvent)="showProblemRatings=!showProblemRatings"
+    [hideCompletedContests]="hideCompletedContests" [showProblemRatings]="showProblemRatings">
+</app-footer>

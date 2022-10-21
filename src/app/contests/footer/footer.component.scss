@@ -1,0 +1,30 @@
+@import "../../../theme.scss";
+
+::ng-deep .padded ul {
+    padding-left: 15px !important;
+    padding-right: 15px !important;
+}
+
+.sticky-bottom {
+    position: fixed;
+    width: 100%;
+    background-color: white;
+    bottom: 0px;
+}
+
+::ng-deep .toggle-switch .mat-grid-tile-content {
+    padding: 5px;
+}
+
+::ng-deep .ngx-pagination .current {
+    background-color: #0b113f !important;
+}
+
+h1 {
+    color: #0b113f;
+    font-weight: bolder;
+}
+
+h3 {
+    color: #0b113f;
+}

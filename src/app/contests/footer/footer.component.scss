@@ -1,3 +1,5 @@
+@import "../../../theme.scss";
+
 ::ng-deep .padded ul {
     padding-left: 15px !important;
     padding-right: 15px !important;
@@ -15,5 +17,14 @@
 }
 
 ::ng-deep .ngx-pagination .current {
-    background-color: #673ab7 !important;
+    background-color: #0b113f !important;
+}
+
+h1 {
+    color: #0b113f;
+    font-weight: bolder;
+}
+
+h3 {
+    color: #0b113f;
 }

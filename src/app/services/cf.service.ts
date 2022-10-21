@@ -29,7 +29,6 @@ export class CfService {
     .map((contest) => {
       contest.url = `${contestBaseUrl}/${contest.id}`;
       contest.category = this.GetCategory(contest.name);
-      console.log(contest);
       return contest;
     });
 

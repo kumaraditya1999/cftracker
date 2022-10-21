@@ -15,8 +15,7 @@ export class HeaderComponent implements OnInit {
     });
   }
 
-  @Input() canFetch: boolean = false;
-  handle: string = "";
+  @Input() handle: string = "";
   selectedCategory: string = Constants.ALL;
 
   @Output() handleEvent = new EventEmitter<string>();
@@ -28,7 +27,6 @@ export class HeaderComponent implements OnInit {
   }
 
   UpdateHandle() {
-    console.log(this.handle);
     this.handleEvent.emit(this.handle);
   }
 

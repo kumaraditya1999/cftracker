@@ -1,3 +1,4 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Constants } from '../models/constants';
 import { Contest } from '../models/contest';
@@ -36,13 +37,28 @@ export class ContestsComponent implements OnInit {
       this.problems = values[1];
       this.cfService.AddProblemsToContests(this.problems, this.contests);
       this.canFetch = true;
-      console.log(this.canFetch);
+      this.handle = localStorage.getItem("handle") || "";
+      this.UpdateHandleData();
+    }).catch((error) => {
+      alert(error);
     });
   }
 
   UpdateHandleData(): void {
+    console.log(this.handle);
+    localStorage.setItem("handle", this.handle);
+
+    if (!this.handle) {
+      console.log("lol");
+      this.contests.forEach(contest => {
+        contest.problems.forEach(problem => problem.status = "");
+      });
+      return;
+    }
+
     this.cfService.GetAllSubmissions(this.handle)
     .then((submissions: Submission[]) => {
+      console.log(submissions);
       var groupedSubmission = groupBy(submissions, "contestId");
       this.contests.forEach(contest => {
         var id: number = contest.id;
@@ -52,10 +68,11 @@ export class ContestsComponent implements OnInit {
             problem.status = Constants.SOLVED;
           } else if (constestSubmission?.some((submission: Submission) => submission.problem.index == problem.index)) {
             problem.status = Constants.ATTEMPTED;
-          }
+          } 
         });
       });
-      console.log("done");
+    }).catch((error : HttpErrorResponse) => {
+      alert(error.error.comment);
     });
   }
 

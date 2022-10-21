@@ -16,6 +16,7 @@ import {MatInputModule} from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { FooterComponent } from './contests/footer/footer.component';
 import {MatDividerModule} from '@angular/material/divider';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 
 @NgModule({
     declarations: [
@@ -36,7 +37,8 @@ import {MatDividerModule} from '@angular/material/divider';
         MatGridListModule, 
         MatInputModule,
         MatIconModule,
-        MatDividerModule
+        MatDividerModule,
+        MatSlideToggleModule
     ],
     bootstrap: [AppComponent]
 })

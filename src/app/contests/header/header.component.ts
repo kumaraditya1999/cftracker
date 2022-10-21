@@ -21,8 +21,8 @@ export class HeaderComponent implements OnInit {
   @Output() handleEvent = new EventEmitter<string>();
   @Output() categoryEvent = new EventEmitter<string>();
 
-  allCategories: string[] = []
-
+  allCategories: string[] = [];
+  
   ngOnInit(): void {
   }
 

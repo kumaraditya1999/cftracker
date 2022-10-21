@@ -9,3 +9,11 @@
     background-color: white;
     bottom: 0px;
 }
+
+::ng-deep .toggle-switch .mat-grid-tile-content {
+    padding: 5px;
+}
+
+::ng-deep .ngx-pagination .current {
+    background-color: #673ab7 !important;
+}

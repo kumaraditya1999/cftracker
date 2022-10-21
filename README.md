@@ -33,6 +33,5 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 ```
 
 ## TODO:
-1. Local storage
 2. Hide attempted
 3. Div.1 + Div.2 missing urls

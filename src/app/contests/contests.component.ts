@@ -27,6 +27,9 @@ export class ContestsComponent implements OnInit {
   page: number = 1;
   pageSize: number = 50;
 
+  showProblemRatings: boolean = false;
+  hideCompletedContests: boolean = false;
+
   ngOnInit(): void {
   }
 
@@ -87,7 +90,13 @@ export class ContestsComponent implements OnInit {
     var indexes : string[] = [];
     for (var i in this.contests) {
       if (this.contests[i].problems.length > 0 && this.IsSelectedCategory(this.contests[i].category)) {
-        indexes.push(i);
+        if (!this.hideCompletedContests) {
+          indexes.push(i);
+        } else {
+          if (this.contests[i].problems.some(problem => problem.status != Constants.SOLVED)) {
+            indexes.push(i);
+          }
+        }
       }
     }
     return indexes;

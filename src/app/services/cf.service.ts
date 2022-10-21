@@ -74,4 +74,18 @@ export class CfService {
         return problem;
       }));
   }
+
+  SyncMissingProblemsFromDiv1(contests: Contest[]) {
+    contests.forEach(contest => {
+      if (contest.category == Constants.DIV_1) {
+        var div2Contest = contests.find(x => x.id == contest.id + 1) || {} as Contest;
+        div2Contest = div2Contest == undefined ? {} as Contest : div2Contest;
+        if (div2Contest.category == Constants.DIV_2) {
+          contest.problems.forEach(problem => {
+            div2Contest?.problems.push(problem);
+          });
+        }
+      }
+    });
+  }
 }

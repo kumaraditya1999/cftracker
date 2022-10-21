@@ -13,6 +13,7 @@ import { CfService } from '../services/cf.service';
 })
 export class ContestsComponent implements OnInit {
   constructor(private cfService: CfService) {
+    this.handle = localStorage.getItem("handle") || "";
     this.SetUpData();
   }
 
@@ -40,8 +41,8 @@ export class ContestsComponent implements OnInit {
       this.problems = values[1];
       this.cfService.AddProblemsToContests(this.problems, this.contests);
       this.canFetch = true;
-      this.handle = localStorage.getItem("handle") || "";
       this.UpdateHandleData();
+      this.cfService.SyncMissingProblemsFromDiv1(this.contests);
     }).catch((error) => {
       alert(error);
     });

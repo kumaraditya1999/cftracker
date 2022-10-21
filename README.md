@@ -32,6 +32,5 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
     ng deploy --base-href=/cftracker/
 ```
 
-## TODO:
-2. Hide attempted
-3. Div.1 + Div.2 missing urls
+## Issues:
+- Div.1 + Div.2 missing urls: no know methods for getting the intersecting problems, brute force for checking valid urls wont work because cf api doesn't allow more that 1 request in two seconds
